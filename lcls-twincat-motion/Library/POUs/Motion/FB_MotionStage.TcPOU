@@ -11,6 +11,7 @@ VAR
 	bFwdHit: BOOL;
 	bBwdHit: BOOL;
 	fbExecFallingEdge: F_TRIG;
+	bIsCoupled : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
