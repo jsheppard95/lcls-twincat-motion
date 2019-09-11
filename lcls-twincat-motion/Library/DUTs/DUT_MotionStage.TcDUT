@@ -5,24 +5,55 @@
 STRUCT
 	// Hardware
 	Axis: AXIS_REF;
+	{attribute 'pytmc' := '
+		pv: LimitForwardEnable
+		io: i
+	'}
 	bLimitForwardEnable AT %I*: BOOL;
+	{attribute 'pytmc' := '
+		pv: LimitBackwardEnable
+		io: i
+	'}
 	bLimitBackwardEnable AT %I*: BOOL;
 	bHome AT %I*: BOOL;
 
 	bBrakeRelease AT %Q*: BOOL;
 	
 	// Psuedo-hardware
+	{attribute 'pytmc' := '
+		pv: AllForwardEnable
+		io: i
+	'}
 	bAllForwardEnable: BOOL:=FALSE; // Forward enable EPS summary
+	{attribute 'pytmc' := '
+		pv: AllBackwardEnable
+		io: i
+	'}
 	bAllBackwardEnable: BOOL:=FALSE; // Forward enable EPS summary
 	bHardwareEnable AT %I*: BOOL; // True when Emergency stop button is not activated
-	
+	{attribute 'pytmc' := '
+		pv: AllEnable
+		io: i
+	'}
 	bAllEnable: BOOL:=FALSE; // Enable EPS summary encapsulating emergency stop button and any additional motion preventive hardware
 
+	{attribute 'pytmc' := '
+		pv: GantryForwardEnable
+		io: i
+	'}
 	bGantryForwardEnable: BOOL:=FALSE; // Forward virtual gantry limit switch
+	{attribute 'pytmc' := '
+		pv: GantryBackwardEnable
+		io: i
+	'}
 	bGantryBackwardEnable: BOOL:=FALSE; // Reverse virtual gantry limit switch
 	
 	// Settings
 	bPowerSelf: BOOL:=TRUE;
+	{attribute 'pytmc' := '
+		pv: EnableMode
+		io: o
+	'}
 	nEnableMode: INT:=ENUM_StageEnableMode.STAGE_ENABLE_MOTION;
 	nBrakeMode: INT:=ENUM_StageBrakeMode.STAGE_BRAKE_DISABLED;
 	nHomingMode: INT:=ENUM_EpicsHomeCmd.EPICS_MOTOR_HOME_NONE;
@@ -32,6 +63,10 @@ STRUCT
 	nEncRef: ULINT:=0; // Encoder count at which this axis is aligned with other axis
 	
 	// Commands
+	{attribute 'pytmc' := '
+		pv: Enable
+		io: o
+	'}
 	bEnable: BOOL;
 	bReset: BOOL;
 	bExecute: BOOL;
@@ -49,6 +84,10 @@ STRUCT
 	nMotionAxisID: UDINT:=0;
 	
 	// Returns
+	{attribute 'pytmc' := '
+		pv: EnableDone
+		io: i
+	'}
 	bEnableDone: BOOL;
 	bBusy: BOOL;
 	bDone: BOOL;
